@@ -36,5 +36,5 @@ sort $DIR/svm+snps/l$l/test_snps.tmp3 | uniq -c | gawk '{print $2 "\t" $3}' > $D
 
 for name in $(cat $DIR/$TRAIN_LIST $DIR/$TEST_LIST);
 do
-	qsub ~/bin/run.sh ~/bin/profile_selected_snps_unnormalize.py $DIR/svm+snps/l$l/${p1}/test_snps.list fasta/$name.fasta $l $DIR/svm+snps/l$l/${p1}/test_snps.$name.matrix.tmp
+	~/bin/run.sh ~/bin/profile_selected_snps_unnormalize.py $DIR/svm+snps/l$l/${p1}/test_snps.list fasta/$name.fasta $l $DIR/svm+snps/l$l/${p1}/test_snps.$name.matrix.tmp
 done

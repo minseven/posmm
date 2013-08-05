@@ -17,7 +17,9 @@ do
 	cat $DIR/knn+snps/l$l/f$f/snps.$name.matrix.tmp >> $DIR/knn+snps/l$l/f$f/snps.matrix.tmp
 done
 NCOL=`(wc -l $DIR/knn+snps/l$l/f$f/snps.list | gawk '{print $1}')`
+rm $DIR/knn+snps/l$l/f$f/snps.jsd.tmp
 for i in $(seq 1 1 $SIZE);
 do
-	qsub ~/bin/run_ffpjsd.one.sh $SIZE $NCOL $i $DIR/knn+snps/l$l/f$f/snps.matrix.tmp $DIR/knn+snps/l$l/f$f/snps.$i.jsd.tmp
+	#~/bin/run_ffpjsd.one.sh $SIZE $NCOL $i $DIR/knn+snps/l$l/f$f/snps.matrix.tmp $DIR/knn+snps/l$l/f$f/snps.$i.jsd.tmp
+	~/bin/ffpjsd -j --nrow $SIZE --ncol $NCOL -r $i $DIR/knn+snps/l$l/f$f/snps.matrix.tmp >> $DIR/knn+snp/l$l/f$f/snps.jsd.tmp
 done

@@ -17,5 +17,5 @@ rm $DIR/knn+snps/l$l/f$f/snps.matrix.tmp
 rm $DIR/knn+snps/l$l/f$f/snps.jsd.tmp
 for name in $(cat $DIR/$LIST);
 do
-	qsub ~/bin/run.sh ~/bin/profile_selected_snps.py $DIR/knn+snps/l$l/f$f/snps.list fasta/$name.fasta $l $DIR/knn+snps/l$l/f$f/snps.$name.matrix.tmp    
+	~/bin/profile_selected_snps.py $DIR/knn+snps/l$l/f$f/snps.list fasta/$name.fasta $l $DIR/knn+snps/l$l/f$f/snps.$name.matrix.tmp    
 done
