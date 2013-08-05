@@ -1,4 +1,6 @@
-Preprocessing step
+Initialization step
+
+0) Make sure you have downloaded and installed PLINK and LIBSVM. 
 
 1) Create a directory for each set of training/testing compositions. For example,
 
@@ -39,7 +41,7 @@ do
 		for k in $(seq 1 1 160); 
 		do
 			cat r$i/knn+snp/f$j/snp.$k.jsd.tmp >> r$i/knn+snp/f$j/snp.jsd.tmp; 
-		done
+		done;
 		
 		for k in 1 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40; 
 		do
@@ -65,7 +67,13 @@ KNN/SNP-S method
 
 1) train_knn+snps.1.sh를 실행시킵니다. KNN/SNP-S의 주요 변수중 하나인 SNP-S의 길이를 다르게 하여 data를 preprocessing하는 과정입니다.
 
-for i in $(seq 1 1 10); do for j in 2 4 6 8; do qsub ~/bin/train_knn+snps.1.sh r$i lqt+conA.$i.train.list $j; done done
+for i in $(seq 1 1 10);
+do
+	for j in 2 4 6 8;
+	do
+		qsub ~/bin/train_knn+snps.1.sh r$i lqt+conA.$i.train.list $j;
+	done
+done
 
 2) 위의 결과가 제대로 나온것을 확인한 뒤에는 길이를 다르게 하여 만든 SNP-S profile에 필터링 퍼센트를 다르게 적용하여 분석을 위한 최종 프로파일을 만들어 냅니다.
 
