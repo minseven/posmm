@@ -35,8 +35,8 @@ cat $DIR/svm+snps/l$l/snps.$i.tmp2 >> $DIR/svm+snps/l$l/snps.$i.tmp3
 sort $DIR/svm+snps/l$l/snps.$i.tmp3 | uniq -c | gawk '{print $2 "\t" $3}' > $DIR/svm+snps/l$l/snps.$i.list
 rm $DIR/svm+snps/l$l/snps.$i.tmp* $DIR/svm+snps/l$l/snps+count.$i.*.tmp
 
-for p1 in 10 50 100 200 400 800 1600;
-do
-        mkdir -p $DIR/svm+snps/l$l/${p1}
-        sort -k 2 -g $DIR/svm+snps/l$l/snps.$i.list | gawk '{ if ($2 > 0) print $0}' | head -n ${p1} | gawk '{print $1}' > $DIR/svm+snps/l$l/${p1}/snps.$i.list
-done
+#for p1 in 10 50 100 200 400 800 1600;
+#do
+#        mkdir -p $DIR/svm+snps/l$l/${p1}
+#        sort -k 2 -g $DIR/svm+snps/l$l/snps.$i.list | gawk '{ if ($2 > 0) print $0}' | head -n ${p1} | gawk '{print $1}' > $DIR/svm+snps/l$l/${p1}/snps.$i.list
+#done
