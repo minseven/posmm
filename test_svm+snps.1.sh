@@ -33,8 +33,10 @@ sort $DIR/svm+snps/l$l/test_snps.controls.tmp | uniq -c | gawk '{print $1 "\t" $
 cp $DIR/svm+snps/l$l/test_snps.tmp1 $DIR/svm+snps/l$l/test_snps.tmp3
 cat $DIR/svm+snps/l$l/test_snps.tmp2 >> $DIR/svm+snps/l$l/test_snps.tmp3
 sort $DIR/svm+snps/l$l/test_snps.tmp3 | uniq -c | gawk '{print $2 "\t" $3}' > $DIR/svm+snps/l$l/test_snps.list
+sort -k 2 -g -r $DIR/svm+snps/l$l/test_snps.list | head -n $p1 > $DIR/svm+snps/l$l/$p1/test_snps.list
+
 
 for name in $(cat $DIR/$TRAIN_LIST $DIR/$TEST_LIST);
 do
-	~/bin/run.sh ~/bin/profile_selected_snps_unnormalize.py $DIR/svm+snps/l$l/${p1}/test_snps.list fasta/$name.fasta $l $DIR/svm+snps/l$l/${p1}/test_snps.$name.matrix.tmp
+	qsub ~/bin/run.sh ~/bin/profile_selected_snps_unnormalize.py $DIR/svm+snps/l$l/${p1}/test_snps.list fasta/$name.fasta $l $DIR/svm+snps/l$l/${p1}/test_snps.$name.matrix.tmp
 done
