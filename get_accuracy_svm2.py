@@ -1,0 +1,64 @@
+#!/usr/bin/python
+
+import sys
+import os
+import math
+
+case=0
+control=0
+tp=0
+tn=0
+fp=0
+fn=0
+t=0
+list=[]
+predict_file=open(sys.argv[1]+'.train.predict','r')
+for line in predict_file.xreadlines():
+	line=line[:-1]
+	list.append(line)	
+answer_file=open(sys.argv[1]+'.test','r')
+for line in answer_file.xreadlines():
+	line=line[:-1]	
+	element=line.split('\t')
+	if element[0] == '2':
+                case=case+1
+                if list[t] == '2':
+                        tp=tp+1
+                else:
+                        fn=fn+1
+        else:
+                control=control+1
+                if list[t] == '1':
+                        tn=tn+1
+                else:
+                        fp=fp+1
+	t=t+1
+mcc=0
+if tp+fp != 0 and tp+fn != 0 and tn+fp != 0 and tn+fn != 0:
+        mcc=(tp*tn-fp*fn)/math.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))
+p_m0c0=float(tp)/float(tp+tn+fp+fn)
+p_m0c1=float(fp)/float(tp+tn+fp+fn)
+p_m1c0=float(fn)/float(tp+tn+fp+fn)
+p_m1c1=float(tn)/float(tp+tn+fp+fn)
+
+p_m0=p_m0c0+p_m0c1
+p_m1=p_m1c0+p_m1c1
+p_c0=p_m0c0+p_m1c0
+p_c1=p_m0c1+p_m1c1
+
+m0c0=0
+m0c1=0
+m1c0=0
+m1c1=0
+if p_m0c0 != 0 and p_m0 != 0 and p_c0 != 0:
+	m0c0=p_m0c0*math.log(p_m0c0/(p_m0*p_c0),2)
+if p_m0c1 != 0 and p_m0 != 0 and p_c1 != 0:
+	m0c1=p_m0c1*math.log(p_m0c1/(p_m0*p_c1),2)
+if p_m1c0 != 0 and p_m1 != 0 and p_c0 != 0:
+	m1c0=p_m1c0*math.log(p_m1c0/(p_m1*p_c0),2)
+if p_m1c1 != 0 and p_m1 != 0 and p_c1 != 0:
+	m1c1=p_m1c1*math.log(p_m1c1/(p_m1*p_c1),2)
+mi=m0c0+m0c1+m1c0+m1c1
+
+#print str(tp)+'\t'+str(tn)+'\t'+str(fp)+'\t'+str(fn)+'\t'+str(mcc)
+print str(tp)+'\t'+str(tn)+'\t'+str(fp)+'\t'+str(fn)+'\t'+str(mi)

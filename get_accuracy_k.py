@@ -14,12 +14,9 @@ for line in list_file.xreadlines():
 	list.append(element[0])	
 k=0
 count=0
-case=0
-control=0
-tp=0
-tn=0
-fp=0
-fn=0
+case_total=0
+predicted_case_total=0
+correct_case=0
 for line in dist_file.xreadlines():
 	line=line[:-1]
 	#element=line.split('\t')
@@ -68,20 +65,19 @@ for line in dist_file.xreadlines():
 			most_high=name 
 	
 	if list[k][:-4].startswith(sys.argv[4]) == True:
-		case=case+1
-		if sys.argv[4] == most_high:
-			tp=tp+1
-		else:
-			fn=fn+1
-	else:
-		control=control+1
-		if list[k][:-4] == most_high:
-			tn=tn+1
-		else:
-			fp=fp+1
+		case_total=case_total+1
+	if sys.argv[4] == most_high:
+		predicted_case_total=predicted_case_total+1
+	if list[k][:-4] == most_high and sys.argv[4] == most_high:
+		correct_case=correct_case+1
 	k=k+1
 
-mcc=0
-if tp+fp != 0 and tp+fn != 0 and tn+fp != 0 and tn+fn != 0:
-	mcc=(tp*tn-fp*fn)/math.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))
-print str(tp)+'\t'+str(tn)+'\t'+str(fp)+'\t'+str(fn)+'\t'+str(mcc)
+precision=float(correct_case)/float(case_total)
+recall=float(correct_case)/float(predicted_case_total)
+#print str(correct_case)+'\t'+str(case_total)+'\t'+str(predicted_case_total)
+f1measure=0
+if precision == 0 or recall == 0:
+	f1measure=0
+else:
+	f1measure=float(2*(precision*recall)/(precision+recall))
+print str(precision)+'\t'+str(recall)+'\t'+str(f1measure)

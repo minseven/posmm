@@ -20,7 +20,7 @@ def predict(file):
 	traits={}
 	traits_size={}
 	traits_mean={}
-	#print vector[:10]
+	print vector[:10]
 	for i in range(0,int(sys.argv[5])):
         	try:
                 	total=traits[vector[i][0][:-4]]
@@ -64,31 +64,20 @@ for line in list_file.xreadlines():
 	list.append(element[0])	
 
 c=1
-count=0
-case=0
-control=0
-tp=0
-tn=0
-fp=0
-fn=0
+correct_case=0
+predicted_case=0
+real_case=0
 test_file=open(sys.argv[2],'r')
 for line in test_file.xreadlines():
 	line=line[:-1]
 	predicted=predict(sys.argv[3]+'.'+str(c)+'.jsd.tmp')
 	if line.startswith(sys.argv[4]) == True:
-                case=case+1
-                if sys.argv[4] == predicted:
-                        tp=tp+1
-                else:
-                        fn=fn+1
-        else:
-                control=control+1
-                if line.startswith(predicted) == True:
-                        tn=tn+1
-                else:
-                        fp=fp+1
+		real_case=real_case+1
+	if predicted == sys.argv[4]:
+		predicted_case=predicted_case+1
+	if predicted == sys.argv[4] and line.startswith(sys.argv[4]) == True:
+		correct_case=correct_case+1
 	c=c+1
-mcc=0
-if tp+fp != 0 and tp+fn != 0 and tn+fp != 0 and tn+fn != 0:
-        mcc=(tp*tn-fp*fn)/math.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))
-print str(tp)+'\t'+str(tn)+'\t'+str(fp)+'\t'+str(fn)+'\t'+str(mcc)
+precision=float(correct_case)/float(predicted_case)
+recall=float(correct_case)/float(real_case)
+print str(correct_case)+'\t'+str(predicted_case)+'\t'+str(real_case)+'\t'+str(precision)+'\t'+str(recall)+'\t'+str(2*(precision*recall)/(precision+recall))
