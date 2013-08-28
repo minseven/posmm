@@ -12,10 +12,10 @@ if len(sys.argv) <= 1:
 
 is_win32 = (sys.platform == 'win32')
 if not is_win32:
-	svmscale_exe = "/compgen1/minseven77/bin/svm-scale"
-	svmtrain_exe = "/compgen1/minseven77/bin/svm-train"
-	svmpredict_exe = "/compgen1/minseven77/bin/svm-predict"
-	grid_py = "/compgen1/minseven77/bin/grid.py"
+	svmscale_exe = "/home/swhwang/bin/svm-scale"
+	svmtrain_exe = "/home/swhwang/bin/svm-train"
+	svmpredict_exe = "/home/swhwang/bin/svm-predict"
+	grid_py = "/home/swhwang/bin/grid.py"
 	gnuplot_exe = "/usr/bin/gnuplot"
 else:
         # example for windows

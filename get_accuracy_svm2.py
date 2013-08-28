@@ -60,5 +60,5 @@ if p_m1c1 != 0 and p_m1 != 0 and p_c1 != 0:
 	m1c1=p_m1c1*math.log(p_m1c1/(p_m1*p_c1),2)
 mi=m0c0+m0c1+m1c0+m1c1
 
-#print str(tp)+'\t'+str(tn)+'\t'+str(fp)+'\t'+str(fn)+'\t'+str(mcc)
-print str(tp)+'\t'+str(tn)+'\t'+str(fp)+'\t'+str(fn)+'\t'+str(mi)
+print str(tp)+'\t'+str(tn)+'\t'+str(fp)+'\t'+str(fn)+'\t'+str(mcc)
+#print str(tp)+'\t'+str(tn)+'\t'+str(fp)+'\t'+str(fn)+'\t'+str(mi)

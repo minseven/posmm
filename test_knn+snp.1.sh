@@ -22,8 +22,9 @@ NCOL=`(wc -l $DIR/knn+snp/f$f/snp.list | gawk '{print $1}')`
 rm $DIR/knn+snp/f$f/test_snp.jsd.tmp
 for i in $(seq 1 1 $SIZE);
 do
+	#qsub ~/bin/test_knn+snp.2.sh $DIR $f $i
 	head -n $i $DIR/knn+snp/f$f/test_snp.matrix.tmp | tail -n 1 > $DIR/knn+snp/f$f/test_snp.$i.matrix.tmp
 	cat $DIR/knn+snp/f$f/snp.matrix.tmp >> $DIR/knn+snp/f$f/test_snp.$i.matrix.tmp
 	NROW=`(wc -l $DIR/knn+snp/f$f/test_snp.$i.matrix.tmp | gawk '{print $1}')`
-	~/bin/ffpjsd -j --nrow $SIZE --ncol $NCOL -r 1 $DIR/knn+snp/f$f/test_snp.$i.matrix.tmp > $DIR/knn+snp/f$f/test_snp.$i.jsd.tmp
+	~/bin/ffpjsd -j --nrow $NROW --ncol $NCOL -r 1 $DIR/knn+snp/f$f/test_snp.$i.matrix.tmp > $DIR/knn+snp/f$f/test_snp.$i.jsd.tmp
 done
