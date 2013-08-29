@@ -35,7 +35,7 @@ do
 		qsub ~/bin/test_svm+snps.2.sh r$f1 $DATA.$f1.train.list $DATA.$f1.test.list $CASE_LABEL $f2 $f3 
 	elif [ $ARG == 'result' ];
 	then
-		a=`(~/bin/get_accuracy_svm_test.py r$f1/$DATA.$f1.train.list r$f1/svm+snps/l$f2/$f3/test_snps.libsvm r$f1/svm+snps/l$f2/$f3/train_snps.libsvm.predict $CASE_LABEL)`;
+		a=`(~/bin/get_accuracy_svm_test.py r$f1/$DATA.$f1.test.list r$f1/svm+snps/l$f2/$f3/test_snps.libsvm r$f1/svm+snps/l$f2/$f3/train_snps.libsvm.predict $CASE_LABEL r$f1/svm+snps.test.result.list)`;
    		echo $f1 $f2 $f3 $a;
 	fi
 done < $FILE

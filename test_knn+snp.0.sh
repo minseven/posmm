@@ -13,7 +13,7 @@ do
 		~/bin/test_knn+snp.1.sh r$f1 $DATA.$f1.test.list $DATASET $f2
 	elif [ $ARG == 'result' ];
 	then
-		a=`(~/bin/get_accuracy_one_k.py r$f1/knn+snp/f$f2/$DATA.$f1.train.list r$f1/$DATA.$f1.test.list r$f1/knn+snp/f$f2/test_snp $CASE_LABEL $f3)`;
+		a=`(~/bin/get_accuracy_one_k.py r$f1/knn+snp/f$f2/snp.ped r$f1/knn+snp/f$f2/test_snp.ped r$f1/knn+snp/f$f2/test_snp $CASE_LABEL $f3 r$f1/knn+snp.test.result.list)`;
 		echo $f1 $f2 $f3 $a;
 	fi
 done < $FILE

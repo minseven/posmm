@@ -15,7 +15,7 @@ do
 		~/bin/test_knn+snps.2.sh r$f1 $DATA.$f1.test.list $f2 $f3
 	elif [ $ARG == 'result' ];
 	then
-		a=`(~/bin/get_accuracy_one_k.py r$f1/$DATA.$f1.train.list r$f1/$DATA.$f1.test.list r$f1/knn+snps/l$f2/f$f3/test_snps $CASE_LABEL $f4)`; 
+		a=`(~/bin/get_accuracy_one_k.py r$f1/$DATA.$f1.train.list r$f1/$DATA.$f1.test.list r$f1/knn+snps/l$f2/f$f3/test_snps $CASE_LABEL $f4 r$f1/knn+snps.test.result.list)`; 
     		echo $f1 $f2 $f3 $f4 $a;
 	fi
 
